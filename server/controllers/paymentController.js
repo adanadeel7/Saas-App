@@ -326,4 +326,71 @@ const verifyCheckout = async (req, res) => {
   }
 };
 
-export { createCheckoutSession, handleWebhook, getSubscription, cancelSubscription, verifyCheckout };
+// @desc    Process debit card checkout (Mock)
+// @route   POST /api/payments/checkout-debit
+// @access  Private
+const checkoutDebit = async (req, res) => {
+  const { planId, cardNumber, cardExpiry, cardCvv, cardName } = req.body;
+  const user = req.user;
+  const userIdString = user._id.toString();
+
+  if (!['pro', 'business'].includes(planId)) {
+    return res.status(400).json({ message: 'Invalid plan selected' });
+  }
+
+  if (!cardNumber || !cardExpiry || !cardCvv || !cardName) {
+    return res.status(400).json({ message: 'All card details are required' });
+  }
+
+  // Simulate processing delay for realistic payment gateway experience
+  await new Promise((resolve) => setTimeout(resolve, 1500));
+
+  try {
+    const cleanedCardNumber = cardNumber.replace(/\s+/g, '');
+    if (cleanedCardNumber.length !== 16) {
+      return res.status(400).json({ message: 'Invalid card number. Must be 16 digits.' });
+    }
+    if (cardCvv.length < 3 || cardCvv.length > 4) {
+      return res.status(400).json({ message: 'Invalid CVV. Must be 3 or 4 digits.' });
+    }
+
+    const sessionId = `debit_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`;
+
+    if (mongoose.connection.readyState === 1) {
+      const dbUser = await User.findById(req.user._id);
+      if (dbUser) {
+        dbUser.plan = planId;
+        await dbUser.save();
+
+        await Subscription.findOneAndUpdate(
+          { user: dbUser._id },
+          {
+            stripeSubscriptionId: sessionId,
+            plan: planId,
+            status: 'active',
+            currentPeriodStart: new Date(),
+            currentPeriodEnd: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+            cancelAtPeriodEnd: false,
+          },
+          { upsert: true }
+        );
+      }
+    } else {
+      dbFallback.updateUser(userIdString, { plan: planId });
+      dbFallback.updateSubscription(userIdString, {
+        plan: planId,
+        status: 'active',
+        currentPeriodStart: new Date().toISOString(),
+        currentPeriodEnd: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(),
+        cancelAtPeriodEnd: false,
+      });
+    }
+
+    res.json({ success: true, plan: planId, sessionId });
+  } catch (error) {
+    console.error('Checkout debit error:', error);
+    res.status(500).json({ message: 'Payment processing failed: ' + error.message });
+  }
+};
+
+export { createCheckoutSession, handleWebhook, getSubscription, cancelSubscription, verifyCheckout, checkoutDebit };

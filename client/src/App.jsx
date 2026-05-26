@@ -19,6 +19,7 @@ import EditInvoice from './pages/EditInvoice';
 import InvoiceDetail from './pages/InvoiceDetail';
 import History from './pages/History';
 import Pricing from './pages/Pricing';
+import Checkout from './pages/Checkout';
 import CheckoutSuccess from './pages/CheckoutSuccess';
 import Settings from './pages/Settings';
 import VerifyEmail from './pages/VerifyEmail';
@@ -61,7 +62,7 @@ const AuthRoute = ({ children }) => {
 // Sub-component to access router context (useLocation)
 const AppContent = () => {
   const location = useLocation();
-  const hideLayout = ['/login', '/register', '/checkout/success', '/verify-email'].includes(location.pathname);
+  const hideLayout = ['/login', '/register', '/checkout', '/checkout/success', '/verify-email'].includes(location.pathname);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -139,6 +140,14 @@ const AppContent = () => {
             element={
               <ProtectedRoute>
                 <Settings />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/checkout"
+            element={
+              <ProtectedRoute>
+                <Checkout />
               </ProtectedRoute>
             }
           />

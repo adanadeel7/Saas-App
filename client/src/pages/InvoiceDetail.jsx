@@ -4,6 +4,7 @@ import { useNavigate, useParams, Link } from 'react-router-dom';
 import { getInvoice, deleteInvoice, updateInvoice, reset } from '../features/invoices/invoiceSlice';
 import Sidebar from '../components/layout/Sidebar';
 import toast from 'react-hot-toast';
+import API from '../services/api';
 
 const currencies = [
   { code: 'USD', symbol: '$' },
@@ -67,22 +68,11 @@ const InvoiceDetail = () => {
   const handleDownloadPDF = () => {
     if (!currentInvoice) return;
 
-    const token = localStorage.getItem('token');
-    const apiURL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
-    
     toast.loading('Generating PDF...');
 
-    fetch(`${apiURL}/invoices/${id}/pdf`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    API.get(`/invoices/${id}/pdf`, { responseType: 'blob' })
       .then((res) => {
-        if (!res.ok) throw new Error('Download failed');
-        return res.blob();
-      })
-      .then((blob) => {
-        const url = window.URL.createObjectURL(blob);
+        const url = window.URL.createObjectURL(res.data);
         const a = document.createElement('a');
         a.href = url;
         a.download = `Invoice-${currentInvoice.invoiceNumber}.pdf`;
@@ -93,8 +83,9 @@ const InvoiceDetail = () => {
         toast.success('Invoice PDF downloaded!');
       })
       .catch((err) => {
+        console.error('PDF download error:', err);
         toast.dismiss();
-        toast.error('Failed to download PDF');
+        toast.error('Failed to download invoice PDF');
       });
   };
 

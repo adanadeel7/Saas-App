@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { getInvoices } from '../features/invoices/invoiceSlice';
 import Sidebar from '../components/layout/Sidebar';
 import toast from 'react-hot-toast';
+import API from '../services/api';
 
 const History = () => {
   const navigate = useNavigate();
@@ -86,24 +87,11 @@ const History = () => {
 
   const handleDownloadPDF = (e, invoiceId, invoiceNumber) => {
     e.stopPropagation(); // Prevent row click navigation
-    const token = localStorage.getItem('token');
-    const apiURL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
-    
-    // Direct link to download using auth token in query
-    // Since browser GET requests cannot set Headers, we can fetch it, or download directly.
-    // Let's open the API endpoint in a new tab with token authentication or download using fetch!
     toast.loading('Preparing PDF...');
-    fetch(`${apiURL}/invoices/${invoiceId}/pdf`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
+    
+    API.get(`/invoices/${invoiceId}/pdf`, { responseType: 'blob' })
       .then((res) => {
-        if (!res.ok) throw new Error('Download failed');
-        return res.blob();
-      })
-      .then((blob) => {
-        const url = window.URL.createObjectURL(blob);
+        const url = window.URL.createObjectURL(res.data);
         const a = document.createElement('a');
         a.href = url;
         a.download = `Invoice-${invoiceNumber}.pdf`;
@@ -114,8 +102,9 @@ const History = () => {
         toast.success('Invoice PDF downloaded!');
       })
       .catch((err) => {
+        console.error('PDF download error:', err);
         toast.dismiss();
-        toast.error('Failed to download PDF');
+        toast.error('Failed to download invoice PDF');
       });
   };
 

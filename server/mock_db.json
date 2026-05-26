@@ -21,14 +21,14 @@
       "email": "funworld876@gmail.com",
       "password": "$2a$10$WZanLt5cHhMocSBRu0yGsOEN4cBdJLXVzIdbWo2m0CdajigcHUI7C",
       "company": "",
-      "plan": "free",
+      "plan": "pro",
       "role": "user",
       "isVerified": false,
       "verificationToken": "35686d45e42576370c49da6bdf06c3d5bb482688774bf45956b522e6f5d7d30a",
       "themePreference": "system",
       "defaultCurrency": "USD",
       "createdAt": "2026-05-26T11:45:15.313Z",
-      "updatedAt": "2026-05-26T11:45:15.313Z"
+      "updatedAt": "2026-05-26T17:07:29.899Z"
     },
     {
       "_id": "user_1779796679778_ydrit",
@@ -107,6 +107,18 @@
       "currentPeriodEnd": "2026-06-25T12:00:25.176Z",
       "createdAt": "2026-05-26T12:00:25.176Z",
       "updatedAt": "2026-05-26T12:00:25.176Z"
+    },
+    {
+      "_id": "sub_1779815249788_gqmx5",
+      "user": "user_1779795915313_3i1hm",
+      "stripeSubscriptionId": "sub_mock_y8a3j0bl",
+      "status": "active",
+      "plan": "pro",
+      "cancelAtPeriodEnd": false,
+      "currentPeriodStart": "2026-05-26T17:07:29.899Z",
+      "currentPeriodEnd": "2026-06-25T17:07:29.899Z",
+      "createdAt": "2026-05-26T17:07:29.788Z",
+      "updatedAt": "2026-05-26T17:07:29.899Z"
     }
   ]
 }

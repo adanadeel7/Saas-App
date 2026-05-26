@@ -321,4 +321,68 @@ const resendVerification = async (req, res) => {
   }
 };
 
-export { registerUser, loginUser, getUserProfile, updateUserSettings, verifyEmail, resendVerification };
+// @desc    Mock Google Login / Registration
+// @route   POST /api/auth/google
+// @access  Public
+const googleLogin = async (req, res) => {
+  const { name, email } = req.body;
+
+  if (!email || !name) {
+    return res.status(400).json({ message: 'Name and email are required for Google sign-in.' });
+  }
+
+  try {
+    let user = null;
+    const adminEmail = (process.env.ADMIN_EMAIL || 'adanadeel903@gmail.com').toLowerCase();
+    const role = email.toLowerCase() === adminEmail ? 'admin' : 'user';
+
+    if (mongoose.connection.readyState === 1) {
+      user = await User.findOne({ email });
+      if (!user) {
+        // Create user with a random password since they login via Google
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(crypto.randomBytes(16).toString('hex'), salt);
+        user = await User.create({
+          name,
+          email,
+          password: hashedPassword,
+          plan: 'free',
+          role,
+          isVerified: true, // Auto-verify Google accounts
+        });
+      }
+    } else {
+      user = dbFallback.findUserByEmail(email);
+      if (!user) {
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(crypto.randomBytes(16).toString('hex'), salt);
+        user = dbFallback.createUser({
+          name,
+          email,
+          password: hashedPassword,
+          plan: 'free',
+          role,
+          isVerified: true,
+        });
+      }
+    }
+
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      company: user.company || '',
+      plan: user.plan,
+      role: user.role || 'user',
+      isVerified: user.isVerified || false,
+      themePreference: user.themePreference || 'system',
+      defaultCurrency: user.defaultCurrency || 'USD',
+      token: generateToken(user._id),
+    });
+  } catch (error) {
+    console.error('Google login error:', error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export { registerUser, loginUser, googleLogin, getUserProfile, updateUserSettings, verifyEmail, resendVerification };

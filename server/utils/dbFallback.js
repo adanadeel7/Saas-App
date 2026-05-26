@@ -225,6 +225,23 @@ const dbFallback = {
     return null;
   },
 
+  deleteUser: (id) => {
+    const db = readDB();
+    const index = db.users.findIndex((u) => u._id === id);
+    if (index !== -1) {
+      db.users.splice(index, 1);
+      // Clean up user's invoices & subscriptions
+      db.invoices = db.invoices.filter((inv) => inv.user !== id);
+      const subIndex = db.subscriptions.findIndex((sub) => sub.user === id);
+      if (subIndex !== -1) {
+        db.subscriptions.splice(subIndex, 1);
+      }
+      writeDB(db);
+      return true;
+    }
+    return false;
+  },
+
   getAllUsers: () => {
     const db = readDB();
     return db.users.map(({ password, ...u }) => u);

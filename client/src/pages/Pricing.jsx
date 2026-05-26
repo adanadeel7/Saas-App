@@ -24,17 +24,7 @@ const Pricing = () => {
       return;
     }
 
-    dispatch(createCheckoutSession(planId))
-      .unwrap()
-      .then((res) => {
-        if (res.mock) {
-          toast.success(`Subscribed to ${planId === 'pro' ? 'Pro' : 'Business'} successfully (MOCK)`);
-          // Redirection to success URL is handled in thunk
-        }
-      })
-      .catch((err) => {
-        toast.error(err || 'Failed to initialize checkout');
-      });
+    navigate(`/checkout?plan=${planId}&billing=${isAnnual ? 'annual' : 'monthly'}`);
   };
 
   return (
@@ -124,7 +114,7 @@ const Pricing = () => {
               <div className="mb-8">
                 <div className="flex items-baseline gap-1">
                   <span className="font-display-lg text-4xl font-bold text-on-surface">
-                    R{isAnnual ? '144' : '180'}
+                    {isAnnual ? '$9' : '$12'}
                   </span>
                   <span className="font-label-md text-label-md text-on-surface-variant">/mo</span>
                 </div>
@@ -165,7 +155,7 @@ const Pricing = () => {
               <div className="mb-8">
                 <div className="flex items-baseline gap-1">
                   <span className="font-display-lg text-4xl font-bold text-on-surface">
-                    R{isAnnual ? '360' : '450'}
+                    {isAnnual ? '$24' : '$30'}
                   </span>
                   <span className="font-label-md text-label-md text-on-surface-variant">/mo</span>
                 </div>

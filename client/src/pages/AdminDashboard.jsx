@@ -40,6 +40,40 @@ const AdminDashboard = () => {
     fetchUsers();
   }, []);
 
+  const handleUpdatePlan = async (userId, newPlan) => {
+    try {
+      toast.loading('Updating user plan...');
+      await API.put(`/admin/users/${userId}/plan`, { plan: newPlan });
+      toast.dismiss();
+      toast.success(`Plan updated to ${newPlan.toUpperCase()}`);
+      
+      // Update local state
+      setUsers(users.map((u) => (u._id === userId ? { ...u, plan: newPlan } : u)));
+    } catch (err) {
+      toast.dismiss();
+      toast.error(err.response?.data?.message || 'Failed to update plan');
+    }
+  };
+
+  const handleDeleteUser = async (userId, name) => {
+    if (!window.confirm(`Are you sure you want to remove ${name} from the platform? This will delete all their invoices.`)) {
+      return;
+    }
+
+    try {
+      toast.loading('Deleting user...');
+      await API.delete(`/admin/users/${userId}`);
+      toast.dismiss();
+      toast.success('User removed successfully');
+      
+      // Update local state
+      setUsers(users.filter((u) => u._id !== userId));
+    } catch (err) {
+      toast.dismiss();
+      toast.error(err.response?.data?.message || 'Failed to delete user');
+    }
+  };
+
   // Summary Metrics
   const totalUsers = users.length;
   const verifiedUsersCount = users.filter((u) => u.isVerified).length;
@@ -180,6 +214,7 @@ const AdminDashboard = () => {
                     <th className="px-6 py-4 font-bold">Verification</th>
                     <th className="px-6 py-4 font-bold">Billing Plan</th>
                     <th className="px-6 py-4 font-bold text-right">Register Date</th>
+                    <th className="px-6 py-4 font-bold text-center">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-outline-variant/20">
@@ -228,19 +263,44 @@ const AdminDashboard = () => {
                           </span>
                         </td>
                         <td className="px-6 py-4">
-                          <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold capitalize ${planBadges[u.plan]}`}>
-                            {u.plan}
-                          </span>
+                          {u.role === 'admin' ? (
+                            <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold capitalize ${planBadges[u.plan]}`}>
+                              {u.plan}
+                            </span>
+                          ) : (
+                            <select
+                              value={u.plan}
+                              onChange={(e) => handleUpdatePlan(u._id, e.target.value)}
+                              className="bg-surface border border-outline-variant rounded px-2 py-1 text-xs text-on-surface focus:outline-none focus:ring-1 focus:ring-primary capitalize cursor-pointer font-bold"
+                            >
+                              <option value="free">Free</option>
+                              <option value="pro">Pro</option>
+                              <option value="business">Business</option>
+                            </select>
+                          )}
                         </td>
                         <td className="px-6 py-4 text-right text-xs text-on-surface-variant">
                           {new Date(u.createdAt).toLocaleDateString()}
+                        </td>
+                        <td className="px-6 py-4 text-center">
+                          {u._id !== user?._id && u.role !== 'admin' && (
+                            <button
+                              onClick={() => handleDeleteUser(u._id, u.name)}
+                              className="text-error hover:text-red-400 p-1 rounded hover:bg-surface-container-highest transition-colors cursor-pointer"
+                              title="Delete User"
+                            >
+                              <span className="material-symbols-outlined text-[20px]">
+                                delete
+                              </span>
+                            </button>
+                          )}
                         </td>
                       </tr>
                     );
                   })}
                   {filteredUsers.length === 0 && (
                     <tr>
-                      <td colSpan="6" className="px-6 py-12 text-center text-on-surface-variant/40 text-sm">
+                      <td colSpan="7" className="px-6 py-12 text-center text-on-surface-variant/40 text-sm">
                         No registered members match the active search/filters criteria.
                       </td>
                     </tr>
