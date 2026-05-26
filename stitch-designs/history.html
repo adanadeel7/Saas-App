@@ -1,0 +1,359 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Invoice History - Equinox</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary-container": "#df7412",
+                    "on-secondary": "#263143",
+                    "on-primary-fixed-variant": "#004395",
+                    "on-error-container": "#ffdad6",
+                    "surface-container-highest": "#2d3449",
+                    "primary-fixed": "#d8e2ff",
+                    "on-background": "#dae2fd",
+                    "surface-dim": "#0b1326",
+                    "tertiary-fixed-dim": "#ffb786",
+                    "tertiary-fixed": "#ffdcc6",
+                    "secondary": "#bcc7de",
+                    "background": "#0b1326",
+                    "outline-variant": "#424754",
+                    "primary": "#adc6ff",
+                    "on-tertiary": "#502400",
+                    "on-surface-variant": "#c2c6d6",
+                    "error-container": "#93000a",
+                    "surface-tint": "#adc6ff",
+                    "on-secondary-fixed": "#111c2d",
+                    "on-primary-container": "#00285d",
+                    "primary-fixed-dim": "#adc6ff",
+                    "surface-variant": "#2d3449",
+                    "surface": "#0b1326",
+                    "secondary-container": "#3e495d",
+                    "on-secondary-container": "#aeb9d0",
+                    "secondary-fixed-dim": "#bcc7de",
+                    "secondary-fixed": "#d8e3fb",
+                    "on-primary-fixed": "#001a42",
+                    "surface-container-high": "#222a3d",
+                    "on-secondary-fixed-variant": "#3c475a",
+                    "surface-container-low": "#131b2e",
+                    "surface-bright": "#31394d",
+                    "outline": "#8c909f",
+                    "on-surface": "#dae2fd",
+                    "surface-container-lowest": "#060e20",
+                    "on-tertiary-fixed": "#311400",
+                    "primary-container": "#4d8eff",
+                    "tertiary": "#ffb786",
+                    "inverse-on-surface": "#283044",
+                    "inverse-surface": "#dae2fd",
+                    "on-tertiary-container": "#461f00",
+                    "on-error": "#690005",
+                    "on-tertiary-fixed-variant": "#723600",
+                    "inverse-primary": "#005ac2",
+                    "on-primary": "#002e6a",
+                    "error": "#ffb4ab",
+                    "surface-container": "#171f33"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "unit": "4px",
+                    "margin-desktop": "48px",
+                    "margin-mobile": "16px",
+                    "container-max-width": "1280px"
+            },
+            "fontFamily": {
+                    "label-sm": [
+                            "JetBrains Mono"
+                    ],
+                    "body-lg": [
+                            "Geist"
+                    ],
+                    "headline-lg-mobile": [
+                            "Geist"
+                    ],
+                    "display-lg": [
+                            "Geist"
+                    ],
+                    "body-md": [
+                            "Geist"
+                    ],
+                    "headline-md": [
+                            "Geist"
+                    ],
+                    "label-md": [
+                            "JetBrains Mono"
+                    ],
+                    "body-sm": [
+                            "Geist"
+                    ],
+                    "headline-lg": [
+                            "Geist"
+                    ]
+            },
+            "fontSize": {
+                    "label-sm": [
+                            "10px",
+                            {
+                                    "lineHeight": "14px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "body-lg": [
+                            "18px",
+                            {
+                                    "lineHeight": "28px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg-mobile": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "display-lg": [
+                            "48px",
+                            {
+                                    "lineHeight": "56px",
+                                    "letterSpacing": "-0.02em",
+                                    "fontWeight": "700"
+                            }
+                    ],
+                    "body-md": [
+                            "16px",
+                            {
+                                    "lineHeight": "24px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-md": [
+                            "24px",
+                            {
+                                    "lineHeight": "32px",
+                                    "fontWeight": "600"
+                            }
+                    ],
+                    "label-md": [
+                            "12px",
+                            {
+                                    "lineHeight": "16px",
+                                    "letterSpacing": "0.05em",
+                                    "fontWeight": "500"
+                            }
+                    ],
+                    "body-sm": [
+                            "14px",
+                            {
+                                    "lineHeight": "20px",
+                                    "fontWeight": "400"
+                            }
+                    ],
+                    "headline-lg": [
+                            "32px",
+                            {
+                                    "lineHeight": "40px",
+                                    "letterSpacing": "-0.01em",
+                                    "fontWeight": "600"
+                            }
+                    ]
+            }
+    },
+        },
+      }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md antialiased min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-surface w-full top-0 sticky z-50">
+<div class="flex justify-between items-center h-16 px-gutter max-w-container-max-width mx-auto">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-bold text-on-surface dark:text-on-surface">Equinox</span>
+<div class="hidden md:flex gap-6">
+<a class="text-on-surface-variant dark:text-on-surface-variant font-body-md text-body-md hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#">Dashboard</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-body-md text-body-md hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#">Features</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-body-md text-body-md hover:text-primary dark:hover:text-primary transition-colors duration-200" href="#">Pricing</a>
+<a class="text-primary dark:text-primary font-bold border-b-2 border-primary pb-1 font-body-md text-body-md transition-all duration-200" href="#">History</a>
+</div>
+</div>
+<div class="flex items-center gap-4 hidden md:flex">
+<button class="text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm transition-colors duration-200">Sign In</button>
+<button class="bg-[#3B82F6] text-white px-4 py-2 rounded font-body-sm text-body-sm hover:bg-opacity-90 transition-colors duration-200">Create Invoice</button>
+</div>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow px-gutter max-w-container-max-width mx-auto w-full py-10 md:py-20 flex flex-col gap-[80px]">
+<!-- Header & Summary -->
+<section class="flex flex-col gap-10">
+<div>
+<h1 class="font-display-lg text-display-lg hidden md:block">Invoice History</h1>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:hidden">Invoice History</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2 max-w-2xl">A comprehensive overview of your financial transactions.</p>
+</div>
+<!-- Bento Grid Summary -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Total Billed -->
+<div class="bg-surface-container-high border border-outline-variant p-6 rounded-xl flex flex-col gap-4 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+<div class="flex justify-between items-start">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Total Billed YTD</span>
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 0;">account_balance_wallet</span>
+</div>
+<div>
+<span class="font-headline-lg text-headline-lg font-label-sm text-on-surface">$124,500.00</span>
+</div>
+</div>
+<!-- Pending -->
+<div class="bg-surface-container-high border border-outline-variant p-6 rounded-xl flex flex-col gap-4 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-tertiary-container/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+<div class="flex justify-between items-start">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Pending Approval</span>
+<span class="material-symbols-outlined text-tertiary-container" style="font-variation-settings: 'FILL' 0;">pending_actions</span>
+</div>
+<div>
+<span class="font-headline-lg text-headline-lg font-label-sm text-on-surface">$18,200.00</span>
+</div>
+</div>
+<!-- Overdue -->
+<div class="bg-surface-container-high border border-outline-variant p-6 rounded-xl flex flex-col gap-4 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-error/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+<div class="flex justify-between items-start">
+<span class="font-body-sm text-body-sm text-on-surface-variant">Overdue Balance</span>
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 0;">warning</span>
+</div>
+<div>
+<span class="font-headline-lg text-headline-lg font-label-sm text-error">$3,450.00</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Detailed List Section -->
+<section class="flex flex-col gap-6">
+<!-- Controls -->
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div class="relative w-full md:w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant" style="font-variation-settings: 'FILL' 0;">search</span>
+<input class="w-full bg-surface-dim border border-outline-variant rounded-lg py-2 pl-10 pr-4 font-body-sm text-body-sm text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-outline" placeholder="Search invoices..." type="text">
+</div>
+<div class="flex gap-2 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+<button class="px-4 py-1.5 rounded-full border border-outline-variant font-label-md text-label-md text-on-surface hover:bg-surface-container-highest transition-colors whitespace-nowrap">All</button>
+<button class="px-4 py-1.5 rounded-full border border-outline-variant font-label-md text-label-md text-on-surface hover:bg-surface-container-highest transition-colors whitespace-nowrap">Paid</button>
+<button class="px-4 py-1.5 rounded-full border border-outline-variant font-label-md text-label-md text-on-surface hover:bg-surface-container-highest transition-colors whitespace-nowrap">Pending</button>
+<button class="px-4 py-1.5 rounded-full border border-outline-variant font-label-md text-label-md text-on-surface hover:bg-surface-container-highest transition-colors whitespace-nowrap">Overdue</button>
+<button class="px-4 py-1.5 rounded-full border border-outline-variant font-label-md text-label-md text-on-surface hover:bg-surface-container-highest transition-colors whitespace-nowrap">Draft</button>
+</div>
+</div>
+<!-- Table -->
+<div class="bg-surface-container-low rounded-xl border border-outline-variant overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant bg-surface-container-highest/30">
+<th class="py-4 px-6 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Invoice ID</th>
+<th class="py-4 px-6 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Client</th>
+<th class="py-4 px-6 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Date</th>
+<th class="py-4 px-6 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Status</th>
+<th class="py-4 px-6 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-right">Amount</th>
+<th class="py-4 px-6 font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-sm text-body-sm">
+<!-- Row 1 -->
+<tr class="border-b border-outline-variant/50 hover:bg-surface-container-high transition-colors group">
+<td class="py-4 px-6 font-label-md text-label-md text-on-surface">INV-2024-089</td>
+<td class="py-4 px-6">Acme Corp</td>
+<td class="py-4 px-6 text-on-surface-variant">Oct 24, 2024</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2 py-1 rounded-sm bg-primary/10 text-primary font-label-sm text-label-sm">Paid</span>
+</td>
+<td class="py-4 px-6 font-label-md text-label-md text-right">$4,500.00</td>
+<td class="py-4 px-6 text-right">
+<div class="flex justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">visibility</span></button>
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">download</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="border-b border-outline-variant/50 hover:bg-surface-container-high transition-colors group">
+<td class="py-4 px-6 font-label-md text-label-md text-on-surface">INV-2024-090</td>
+<td class="py-4 px-6">Globex Inc</td>
+<td class="py-4 px-6 text-on-surface-variant">Nov 02, 2024</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2 py-1 rounded-sm bg-tertiary-container/10 text-tertiary-container font-label-sm text-label-sm">Pending</span>
+</td>
+<td class="py-4 px-6 font-label-md text-label-md text-right">$12,000.00</td>
+<td class="py-4 px-6 text-right">
+<div class="flex justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">visibility</span></button>
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">download</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="border-b border-outline-variant/50 hover:bg-surface-container-high transition-colors group">
+<td class="py-4 px-6 font-label-md text-label-md text-on-surface">INV-2024-091</td>
+<td class="py-4 px-6">Stark Industries</td>
+<td class="py-4 px-6 text-on-surface-variant">Oct 15, 2024</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2 py-1 rounded-sm bg-error/10 text-error font-label-sm text-label-sm">Overdue</span>
+</td>
+<td class="py-4 px-6 font-label-md text-label-md text-right">$3,450.00</td>
+<td class="py-4 px-6 text-right">
+<div class="flex justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">visibility</span></button>
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">download</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="border-b border-outline-variant/50 hover:bg-surface-container-high transition-colors group">
+<td class="py-4 px-6 font-label-md text-label-md text-on-surface">INV-2024-092</td>
+<td class="py-4 px-6">Wayne Enterprises</td>
+<td class="py-4 px-6 text-on-surface-variant">Nov 10, 2024</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2 py-1 rounded-sm bg-outline/10 text-outline font-label-sm text-label-sm">Draft</span>
+</td>
+<td class="py-4 px-6 font-label-md text-label-md text-right">$8,200.00</td>
+<td class="py-4 px-6 text-right">
+<div class="flex justify-end gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">visibility</span></button>
+<button class="text-on-surface-variant hover:text-primary transition-colors"><span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">download</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-lowest w-full py-12 mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center px-gutter max-w-container-max-width mx-auto gap-6 md:gap-0">
+<span class="font-headline-sm text-headline-sm font-semibold text-on-surface">Equinox</span>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface transition-colors" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface transition-colors" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface transition-colors" href="#">Contact</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface transition-colors" href="#">Twitter</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface dark:hover:text-on-surface transition-colors" href="#">LinkedIn</a>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">© 2024 Equinox Invoicing. All rights reserved.</span>
+</div>
+</footer>
+</body></html>

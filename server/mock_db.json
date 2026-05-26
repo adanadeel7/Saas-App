@@ -1,0 +1,69 @@
+{
+  "users": [
+    {
+      "_id": "user_1779791319105_ylbvg",
+      "name": "Adan Adeel",
+      "email": "adanadeel903@gmail.com",
+      "password": "$2a$10$GrNQaFwXp7v0V6TociBEg.u7h8Q350qcPWpslciPvVk3Nn68jYF4.",
+      "company": "",
+      "plan": "free",
+      "themePreference": "system",
+      "defaultCurrency": "USD",
+      "isVerified": true,
+      "role": "admin",
+      "createdAt": "2026-05-26T10:28:39.105Z",
+      "updatedAt": "2026-05-26T10:47:33.895Z",
+      "verificationToken": "b0abab085532c3856b336bfec5da2f9e566740623abe59b8cfcc590f2f9f93ff"
+    }
+  ],
+  "invoices": [
+    {
+      "_id": "inv_1779792407867_fhfo6",
+      "freelancerName": "Adan Adeel",
+      "freelancerEmail": "adanadeel903@gmail.com",
+      "clientName": "Jone",
+      "clientEmail": "funworld876@gmail.com",
+      "clientAddress": "",
+      "projectTitle": "Content Agency Start Cost",
+      "projectPrice": 1000,
+      "duration": "1",
+      "durationUnit": "months",
+      "currency": "USD",
+      "lineItems": [
+        {
+          "description": "Video Editing",
+          "quantity": 1,
+          "rate": 500,
+          "amount": 500
+        },
+        {
+          "description": "Cotent",
+          "quantity": 1,
+          "rate": 500,
+          "amount": 500
+        }
+      ],
+      "paymentDetails": {
+        "method": "paypal",
+        "bankName": "",
+        "accountName": "",
+        "accountNumber": "",
+        "routingNumber": "",
+        "paypalEmail": "adanadeel903@gmail.com",
+        "paymentLink": "",
+        "instructions": ""
+      },
+      "dueDate": "2026-05-27",
+      "notes": "",
+      "status": "paid",
+      "user": "user_1779791319105_ylbvg",
+      "invoiceNumber": "INV-00001",
+      "subtotal": 1000,
+      "totalAmount": 1000,
+      "issueDate": "2026-05-26T10:46:47.867Z",
+      "createdAt": "2026-05-26T10:46:47.867Z",
+      "updatedAt": "2026-05-26T10:48:03.903Z"
+    }
+  ],
+  "subscriptions": []
+}

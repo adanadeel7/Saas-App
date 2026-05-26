@@ -1,0 +1,361 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Pricing | Equinox Invoicing</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary": "#263143",
+                    "on-tertiary-container": "#461f00",
+                    "on-tertiary": "#502400",
+                    "on-surface-variant": "#c2c6d6",
+                    "surface-container-lowest": "#060e20",
+                    "tertiary-fixed-dim": "#ffb786",
+                    "on-error-container": "#ffdad6",
+                    "primary-fixed": "#d8e2ff",
+                    "surface-bright": "#31394d",
+                    "secondary-container": "#3e495d",
+                    "on-background": "#dae2fd",
+                    "on-primary-fixed": "#001a42",
+                    "on-secondary-container": "#aeb9d0",
+                    "on-surface": "#dae2fd",
+                    "surface": "#0b1326",
+                    "inverse-surface": "#dae2fd",
+                    "secondary-fixed-dim": "#bcc7de",
+                    "background": "#0b1326",
+                    "outline-variant": "#424754",
+                    "on-tertiary-fixed": "#311400",
+                    "tertiary-container": "#df7412",
+                    "tertiary": "#ffb786",
+                    "secondary": "#bcc7de",
+                    "on-secondary-fixed-variant": "#3c475a",
+                    "error-container": "#93000a",
+                    "primary-container": "#4d8eff",
+                    "surface-tint": "#adc6ff",
+                    "surface-dim": "#0b1326",
+                    "surface-container-high": "#222a3d",
+                    "on-secondary-fixed": "#111c2d",
+                    "surface-container-highest": "#2d3449",
+                    "on-primary": "#002e6a",
+                    "outline": "#8c909f",
+                    "inverse-on-surface": "#283044",
+                    "on-error": "#690005",
+                    "inverse-primary": "#005ac2",
+                    "surface-variant": "#2d3449",
+                    "primary": "#adc6ff",
+                    "surface-container-low": "#131b2e",
+                    "on-primary-fixed-variant": "#004395",
+                    "on-tertiary-fixed-variant": "#723600",
+                    "secondary-fixed": "#d8e3fb",
+                    "error": "#ffb4ab",
+                    "primary-fixed-dim": "#adc6ff",
+                    "tertiary-fixed": "#ffdcc6",
+                    "on-primary-container": "#00285d",
+                    "surface-container": "#171f33"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "margin-desktop": "48px",
+                    "margin-mobile": "16px",
+                    "container-max-width": "1280px",
+                    "unit": "4px"
+            },
+            "fontFamily": {
+                    "body-md": ["Geist"],
+                    "headline-lg-mobile": ["Geist"],
+                    "display-lg": ["Geist"],
+                    "headline-md": ["Geist"],
+                    "headline-lg": ["Geist"],
+                    "label-md": ["JetBrains Mono"],
+                    "label-sm": ["JetBrains Mono"],
+                    "body-lg": ["Geist"],
+                    "body-sm": ["Geist"]
+            },
+            "fontSize": {
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "label-sm": ["10px", {"lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #0b1326;
+            color: #dae2fd;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .pricing-card {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .pricing-card:hover {
+            transform: translateY(-8px);
+        }
+    </style>
+</head>
+<body class="font-body-md overflow-x-hidden">
+<!-- Top Navigation Bar -->
+<header class="bg-surface border-b border-outline-variant sticky top-0 z-50">
+<nav class="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max-width mx-auto h-20">
+<div class="text-headline-md font-headline-md font-bold text-primary">Equinox</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Dashboard</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">Features</a>
+<a class="font-body-md text-body-md text-primary border-b-2 border-primary pb-1" href="#">Pricing</a>
+<a class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors duration-200" href="#">History</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden sm:block text-on-surface-variant font-body-md text-body-md hover:text-primary transition-colors px-4 py-2">Log In</button>
+<button class="bg-primary text-on-primary font-body-md text-body-md px-6 py-2.5 rounded hover:opacity-90 active:scale-95 transition-all">Get Started</button>
+</div>
+</nav>
+</header>
+<main class="min-h-screen">
+<!-- Hero Section -->
+<section class="py-20 md:py-32 px-margin-mobile md:px-margin-desktop text-center">
+<div class="max-w-3xl mx-auto">
+<span class="inline-block font-label-md text-label-md text-primary tracking-widest uppercase mb-4">Investment Tiers</span>
+<h1 class="font-display-lg text-display-lg mb-6 leading-tight">Scale your practice with precision.</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12">Choose a plan that matches your freelance velocity. No hidden fees, just pure financial utility.</p>
+<!-- Toggle Switch -->
+<div class="flex items-center justify-center gap-4 mb-16">
+<span class="font-label-md text-label-md text-on-surface-variant" id="monthly-label">Monthly</span>
+<button class="relative w-14 h-7 bg-surface-container-highest rounded-full p-1 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary" id="billing-toggle">
+<div class="absolute left-1 top-1 w-5 h-5 bg-primary rounded-full transition-transform duration-300 transform translate-x-0" id="toggle-circle"></div>
+</button>
+<span class="font-label-md text-label-md text-on-surface-variant" id="annual-label">Annual <span class="text-tertiary-container ml-1">(Save 20%)</span></span>
+</div>
+</div>
+<!-- Pricing Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-container-max-width mx-auto">
+<!-- Starter Tier -->
+<div class="pricing-card flex flex-col p-8 bg-surface-container-low border border-outline-variant rounded-xl text-left">
+<div class="mb-8">
+<h3 class="font-headline-md text-headline-md mb-2">Starter</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">For the newly independent professional.</p>
+</div>
+<div class="mb-8">
+<div class="flex items-baseline gap-1">
+<span class="font-display-lg text-display-lg font-bold text-on-surface">$0</span>
+<span class="font-label-md text-label-md text-on-surface-variant">/mo</span>
+</div>
+</div>
+<ul class="space-y-4 mb-12 flex-grow">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-md text-body-md">5 Invoices per month</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-md text-body-md">Basic Dashboard</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-md text-body-md">Email Support</span>
+</li>
+</ul>
+<button class="w-full py-4 border border-outline-variant hover:bg-surface-container-highest transition-colors font-body-md text-body-md rounded-lg">Start Free</button>
+</div>
+<!-- Pro Tier (Highlighted) -->
+<div class="pricing-card relative flex flex-col p-8 bg-surface-container-high border border-primary/50 rounded-xl text-left overflow-hidden">
+<div class="absolute top-0 right-0 bg-primary px-4 py-1 rounded-bl-lg">
+<span class="font-label-sm text-label-sm text-on-primary font-bold">MOST POPULAR</span>
+</div>
+<div class="mb-8">
+<h3 class="font-headline-md text-headline-md mb-2">Pro</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">The engine for high-performing freelancers.</p>
+</div>
+<div class="mb-8">
+<div class="flex items-baseline gap-1">
+<span class="font-display-lg text-display-lg font-bold text-on-surface" id="pro-price">$12</span>
+<span class="font-label-md text-label-md text-on-surface-variant">/mo</span>
+</div>
+</div>
+<ul class="space-y-4 mb-12 flex-grow">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-md text-body-md">Unlimited Invoices</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-md text-body-md">Custom Branding</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-md text-body-md">Automated Reminders</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-md text-body-md">Tax Export (CSV/PDF)</span>
+</li>
+</ul>
+<button class="w-full py-4 bg-primary text-on-primary hover:opacity-90 transition-all font-body-md text-body-md rounded-lg">Elevate to Pro</button>
+</div>
+<!-- Team Tier -->
+<div class="pricing-card flex flex-col p-8 bg-surface-container-low border border-outline-variant rounded-xl text-left">
+<div class="mb-8">
+<h3 class="font-headline-md text-headline-md mb-2">Team</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Synergy for studios and partnerships.</p>
+</div>
+<div class="mb-8">
+<div class="flex items-baseline gap-1">
+<span class="font-display-lg text-display-lg font-bold text-on-surface" id="team-price">$30</span>
+<span class="font-label-md text-label-md text-on-surface-variant">/mo</span>
+</div>
+</div>
+<ul class="space-y-4 mb-12 flex-grow">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-md text-body-md">Team Collaboration (up to 5)</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-md text-body-md">Shared Client Database</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-md text-body-md">Role-based Permissions</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="check_circle">check_circle</span>
+<span class="font-body-md text-body-md">Priority 24/7 Support</span>
+</li>
+</ul>
+<button class="w-full py-4 border border-outline-variant hover:bg-surface-container-highest transition-colors font-body-md text-body-md rounded-lg">Scale with Team</button>
+</div>
+</div>
+</section>
+<!-- Feature Comparison Detail (Bento Style) -->
+<section class="py-20 bg-surface-container-lowest px-margin-mobile md:px-margin-desktop">
+<div class="max-w-container-max-width mx-auto">
+<div class="mb-12">
+<h2 class="font-headline-lg text-headline-lg mb-4">Precision Details</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Everything you need to master your cash flow.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<!-- Detail Item 1 -->
+<div class="md:col-span-2 p-8 bg-surface border border-outline-variant rounded-xl flex flex-col justify-between">
+<div class="mb-6">
+<span class="material-symbols-outlined text-primary mb-4 block" data-icon="branding_watermark" style="font-size: 32px;">branding_watermark</span>
+<h4 class="font-headline-md text-headline-md mb-2">Custom Branding</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">Inject your visual identity into every PDF. Upload logos, set primary colors, and use custom fonts to ensure your invoices look as professional as your work.</p>
+</div>
+<div class="bg-surface-container rounded-lg p-4 border border-outline-variant/30">
+<div class="h-2 w-24 bg-primary rounded-full mb-2"></div>
+<div class="h-2 w-16 bg-outline-variant rounded-full"></div>
+</div>
+</div>
+<!-- Detail Item 2 -->
+<div class="p-8 bg-surface border border-outline-variant rounded-xl">
+<span class="material-symbols-outlined text-primary mb-4 block" data-icon="group" style="font-size: 32px;">group</span>
+<h4 class="font-headline-md text-headline-md mb-2">Collaboration</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Invite contractors or partners to manage billing together without compromising security.</p>
+</div>
+<!-- Detail Item 3 -->
+<div class="p-8 bg-surface border border-outline-variant rounded-xl">
+<span class="material-symbols-outlined text-primary mb-4 block" data-icon="lock" style="font-size: 32px;">lock</span>
+<h4 class="font-headline-md text-headline-md mb-2">Bank Grade</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">AES-256 encryption for all financial data and secure payment gateway integrations.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 px-margin-mobile md:px-margin-desktop text-center">
+<div class="max-w-3xl mx-auto p-12 bg-surface-container rounded-3xl border border-outline-variant/50 relative overflow-hidden">
+<div class="absolute -top-24 -left-24 w-64 h-64 bg-primary/10 blur-[100px] rounded-full"></div>
+<div class="absolute -bottom-24 -right-24 w-64 h-64 bg-tertiary-container/10 blur-[100px] rounded-full"></div>
+<h2 class="font-display-lg text-display-lg mb-6 relative z-10">Ready to automate?</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 relative z-10">Join 15,000+ freelancers who simplified their financial workflow this year.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center relative z-10">
+<button class="px-10 py-4 bg-primary text-on-primary font-body-md text-body-md rounded-lg hover:opacity-90 transition-all">Start Your 14-Day Pro Trial</button>
+<button class="px-10 py-4 border border-outline-variant hover:bg-surface-container-highest font-body-md text-body-md rounded-lg transition-colors">Book a Demo</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-outline-variant/30">
+<div class="w-full py-12 px-margin-desktop max-w-container-max-width mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+<div class="flex flex-col items-center md:items-start gap-2">
+<div class="text-body-lg font-headline-md text-on-surface">Equinox</div>
+<p class="font-label-md text-label-md text-secondary opacity-70">© 2024 Equinox Invoicing. Precision for freelancers.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-label-md text-label-md text-on-secondary-container hover:text-primary transition-colors" href="#">Terms</a>
+<a class="font-label-md text-label-md text-on-secondary-container hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="font-label-md text-label-md text-on-secondary-container hover:text-primary transition-colors" href="#">Twitter</a>
+<a class="font-label-md text-label-md text-on-secondary-container hover:text-primary transition-colors" href="#">GitHub</a>
+<a class="font-label-md text-label-md text-on-secondary-container hover:text-primary transition-colors" href="#">Support</a>
+</div>
+</div>
+</footer>
+<script>
+        const billingToggle = document.getElementById('billing-toggle');
+        const toggleCircle = document.getElementById('toggle-circle');
+        const monthlyLabel = document.getElementById('monthly-label');
+        const annualLabel = document.getElementById('annual-label');
+        const proPrice = document.getElementById('pro-price');
+        const teamPrice = document.getElementById('team-price');
+
+        let isAnnual = false;
+
+        billingToggle.addEventListener('click', () => {
+            isAnnual = !isAnnual;
+            
+            // Animation for toggle
+            toggleCircle.style.transform = isAnnual ? 'translateX(28px)' : 'translateX(0)';
+            
+            // Update Labels
+            monthlyLabel.style.color = isAnnual ? '#c2c6d6' : '#adc6ff';
+            annualLabel.style.color = isAnnual ? '#adc6ff' : '#c2c6d6';
+            
+            // Update Prices with slight animation
+            const updatePricing = () => {
+                if (isAnnual) {
+                    proPrice.innerText = '$9';
+                    teamPrice.innerText = '$24';
+                } else {
+                    proPrice.innerText = '$12';
+                    teamPrice.innerText = '$30';
+                }
+            };
+            
+            proPrice.style.opacity = 0;
+            teamPrice.style.opacity = 0;
+            
+            setTimeout(() => {
+                updatePricing();
+                proPrice.style.opacity = 1;
+                teamPrice.style.opacity = 1;
+            }, 150);
+        });
+
+        // Initialize state
+        monthlyLabel.style.color = '#adc6ff';
+    </script>
+</body></html>
