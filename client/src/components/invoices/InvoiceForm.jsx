@@ -217,9 +217,9 @@ const InvoiceForm = ({ initialData, onSubmit, submitBtnText }) => {
   };
 
   return (
-    <main className="flex flex-col lg:flex-row h-[calc(100vh-80px)] w-full overflow-hidden animate-fade-in">
+    <main className="flex flex-col lg:flex-row min-h-screen w-full animate-fade-in">
       {/* Left Side: Form Fields */}
-      <section className="w-full lg:w-1/2 overflow-y-auto border-r border-outline-variant bg-surface-container-low p-6 md:p-8 lg:p-12 no-scrollbar">
+      <section className="w-full lg:w-1/2 border-r border-outline-variant bg-surface-container-low p-6 md:p-8 lg:p-12">
         <form onSubmit={handleSubmit} className="max-w-xl mx-auto space-y-10 pb-16">
           <header>
             <h1 className="font-headline-lg text-2xl font-extrabold text-on-surface tracking-tight">
@@ -546,11 +546,11 @@ const InvoiceForm = ({ initialData, onSubmit, submitBtnText }) => {
       </section>
 
       {/* Right Side: Live Preview */}
-      <section className="hidden lg:flex w-1/2 bg-surface p-12 items-center justify-center relative overflow-hidden">
+      <section className="hidden lg:flex w-1/2 bg-surface p-12 items-start justify-center relative">
         {/* Decorative Grid */}
         <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(#3B82F6 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
         
-        <div className="preview-canvas w-full max-w-[480px] bg-[#1E293B] border border-[#334155] rounded-sm p-10 flex flex-col justify-between text-[#dae2fd] animate-fade-in">
+        <div className="preview-canvas w-full max-w-[480px] bg-[#1E293B] border border-[#334155] rounded-sm p-10 flex flex-col justify-between text-[#dae2fd] animate-fade-in sticky top-8">
           <div>
             <div className="flex justify-between items-start mb-8">
               <div className="space-y-1">
