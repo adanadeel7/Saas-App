@@ -2,7 +2,7 @@
   "name": "invoiceforge-server",
   "version": "1.0.0",
   "description": "InvoiceForge Freelance Billing backend server",
-  "main": "server.js",
+  "main": "server/server.js",
   "type": "module",
   "scripts": {
     "start": "node server/server.js",
