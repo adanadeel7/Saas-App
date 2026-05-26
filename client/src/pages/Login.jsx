@@ -3,14 +3,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { login, reset } from '../features/auth/authSlice';
 import toast from 'react-hot-toast';
-import GoogleAuthModal from '../components/auth/GoogleAuthModal';
 
 const Login = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
-  const [isGoogleModalOpen, setIsGoogleModalOpen] = useState(false);
 
   const { email, password } = formData;
 
@@ -139,7 +137,7 @@ const Login = () => {
         </div>
 
         <button
-          onClick={() => setIsGoogleModalOpen(true)}
+          onClick={() => toast('Social logins are coming soon!')}
           className="w-full bg-transparent border border-outline-variant text-on-surface rounded-lg py-3 px-4 font-label-md text-label-md uppercase tracking-wider hover:bg-surface-container-high focus:outline-none focus:ring-2 focus:ring-outline-variant transition-all flex justify-center items-center gap-3 cursor-pointer"
           type="button"
         >
@@ -151,8 +149,6 @@ const Login = () => {
           </svg>
           Sign in with Google
         </button>
-
-        <GoogleAuthModal isOpen={isGoogleModalOpen} onClose={() => setIsGoogleModalOpen(false)} />
       </main>
 
       <footer className="mt-8 relative z-10 text-center">

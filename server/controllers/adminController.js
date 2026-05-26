@@ -88,4 +88,40 @@ const deleteUser = async (req, res) => {
   }
 };
 
-export { getUsers, updateUserPlan, deleteUser };
+// @desc    Update user role
+// @route   PUT /api/admin/users/:id/role
+// @access  Private/Admin
+const updateUserRole = async (req, res) => {
+  const { id } = req.params;
+  const { role } = req.body;
+
+  if (!['user', 'admin'].includes(role)) {
+    return res.status(400).json({ message: 'Invalid role value. Must be user or admin.' });
+  }
+
+  // Prevent self-role modification
+  if (id === req.user._id.toString()) {
+    return res.status(400).json({ message: 'You cannot modify your own administrative access.' });
+  }
+
+  try {
+    let updatedUser = null;
+
+    if (mongoose.connection.readyState === 1) {
+      updatedUser = await User.findByIdAndUpdate(id, { role }, { new: true }).select('-password');
+    } else {
+      updatedUser = dbFallback.updateUser(id, { role });
+    }
+
+    if (!updatedUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    res.json(updatedUser);
+  } catch (error) {
+    console.error('Admin updateUserRole error:', error);
+    res.status(500).json({ message: 'Server error: ' + error.message });
+  }
+};
+
+export { getUsers, updateUserPlan, deleteUser, updateUserRole };

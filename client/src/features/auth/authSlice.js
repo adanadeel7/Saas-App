@@ -64,32 +64,7 @@ export const login = createAsyncThunk(
   }
 );
 
-// Sign in/Register with Google
-export const signInWithGoogle = createAsyncThunk(
-  'auth/google',
-  async (googleData, thunkAPI) => {
-    try {
-      const response = await API.post('/auth/google', googleData);
-      if (response.data) {
-        localStorage.setItem('token', response.data.token);
-        localStorage.setItem('user', JSON.stringify({
-          _id: response.data._id,
-          name: response.data.name,
-          email: response.data.email,
-          company: response.data.company,
-          plan: response.data.plan,
-          role: response.data.role,
-          isVerified: response.data.isVerified,
-          themePreference: response.data.themePreference,
-          defaultCurrency: response.data.defaultCurrency,
-        }));
-      }
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(getAPIError(error));
-    }
-  }
-);
+
 
 // Get current user profile
 export const getMe = createAsyncThunk(
@@ -188,23 +163,7 @@ export const authSlice = createSlice({
         state.user = null;
         state.token = null;
       })
-      // Google Login
-      .addCase(signInWithGoogle.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(signInWithGoogle.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-        state.user = action.payload;
-        state.token = action.payload.token;
-      })
-      .addCase(signInWithGoogle.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-        state.user = null;
-        state.token = null;
-      })
+
       // Get Me
       .addCase(getMe.fulfilled, (state, action) => {
         state.user = action.payload;

@@ -55,6 +55,21 @@ const AdminDashboard = () => {
     }
   };
 
+  const handleUpdateRole = async (userId, newRole) => {
+    try {
+      toast.loading('Updating user role...');
+      await API.put(`/admin/users/${userId}/role`, { role: newRole });
+      toast.dismiss();
+      toast.success(`Role updated to ${newRole.toUpperCase()}`);
+      
+      // Update local state
+      setUsers(users.map((u) => (u._id === userId ? { ...u, role: newRole } : u)));
+    } catch (err) {
+      toast.dismiss();
+      toast.error(err.response?.data?.message || 'Failed to update role');
+    }
+  };
+
   const handleDeleteUser = async (userId, name) => {
     if (!window.confirm(`Are you sure you want to remove ${name} from the platform? This will delete all their invoices.`)) {
       return;
@@ -249,13 +264,20 @@ const AdminDashboard = () => {
                           {u.email}
                         </td>
                         <td className="px-6 py-4">
-                          <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
-                            u.role === 'admin' 
-                              ? 'bg-red-500/10 text-red-400 border border-red-500/20' 
-                              : 'bg-primary/5 text-on-surface-variant'
-                          }`}>
-                            {u.role}
-                          </span>
+                          {u._id === user?._id ? (
+                            <span className="px-2 py-0.5 rounded text-[10px] font-bold uppercase bg-red-500/10 text-red-400 border border-red-500/20">
+                              {u.role}
+                            </span>
+                          ) : (
+                            <select
+                              value={u.role}
+                              onChange={(e) => handleUpdateRole(u._id, e.target.value)}
+                              className="bg-surface border border-outline-variant rounded px-2 py-1 text-xs text-on-surface focus:outline-none focus:ring-1 focus:ring-primary capitalize cursor-pointer font-bold"
+                            >
+                              <option value="user">User</option>
+                              <option value="admin">Admin</option>
+                            </select>
+                          )}
                         </td>
                         <td className="px-6 py-4">
                           <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${verifyBadge}`}>

@@ -16,34 +16,19 @@
       "verificationToken": "b0abab085532c3856b336bfec5da2f9e566740623abe59b8cfcc590f2f9f93ff"
     },
     {
-      "_id": "user_1779795915313_3i1hm",
-      "name": "Adan Adeel ",
+      "_id": "user_1779816120686_vy7gc",
+      "name": "Adan Edits",
       "email": "funworld876@gmail.com",
-      "password": "$2a$10$WZanLt5cHhMocSBRu0yGsOEN4cBdJLXVzIdbWo2m0CdajigcHUI7C",
-      "company": "",
-      "plan": "pro",
-      "role": "user",
-      "isVerified": false,
-      "verificationToken": "35686d45e42576370c49da6bdf06c3d5bb482688774bf45956b522e6f5d7d30a",
-      "themePreference": "system",
-      "defaultCurrency": "USD",
-      "createdAt": "2026-05-26T11:45:15.313Z",
-      "updatedAt": "2026-05-26T17:07:29.899Z"
-    },
-    {
-      "_id": "user_1779796679778_ydrit",
-      "name": "Google User",
-      "email": "google_61165@example.com",
-      "password": "$2a$10$FMeWC9kptJLIWnrubXaxNeSmEIFsAWt3AJMM3pnaBVknk2n9aUp1K",
+      "password": "$2a$10$VJ2dc7Xyjy7SFW8AD.JMBeScsdryWiwoz7g2OfA.7hQoxHhr3wdlm",
       "company": "",
       "plan": "free",
       "role": "user",
       "isVerified": false,
-      "verificationToken": "08dc883b1468df25de2946cf4d848b1b387a406bb23d93c4a6384944f4082d47",
+      "verificationToken": "816341ddcb3094d377943a37b8128239dcb9b56aeca73446b22fe77ac9d49113",
       "themePreference": "system",
       "defaultCurrency": "USD",
-      "createdAt": "2026-05-26T11:57:59.778Z",
-      "updatedAt": "2026-05-26T11:57:59.779Z"
+      "createdAt": "2026-05-26T17:22:00.686Z",
+      "updatedAt": "2026-05-26T17:23:09.961Z"
     }
   ],
   "invoices": [
@@ -109,16 +94,16 @@
       "updatedAt": "2026-05-26T12:00:25.176Z"
     },
     {
-      "_id": "sub_1779815249788_gqmx5",
-      "user": "user_1779795915313_3i1hm",
-      "stripeSubscriptionId": "sub_mock_y8a3j0bl",
+      "_id": "sub_1779816157422_2jhhq",
+      "user": "user_1779816120686_vy7gc",
+      "stripeSubscriptionId": "sub_mock_k2uffkig",
       "status": "active",
       "plan": "pro",
       "cancelAtPeriodEnd": false,
-      "currentPeriodStart": "2026-05-26T17:07:29.899Z",
-      "currentPeriodEnd": "2026-06-25T17:07:29.899Z",
-      "createdAt": "2026-05-26T17:07:29.788Z",
-      "updatedAt": "2026-05-26T17:07:29.899Z"
+      "currentPeriodStart": "2026-05-26T17:22:38.587Z",
+      "currentPeriodEnd": "2026-06-25T17:22:38.587Z",
+      "createdAt": "2026-05-26T17:22:37.422Z",
+      "updatedAt": "2026-05-26T17:22:38.587Z"
     }
   ]
 }
