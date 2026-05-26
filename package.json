@@ -1,0 +1,31 @@
+{
+  "name": "invoiceforge-fullstack",
+  "version": "1.0.0",
+  "description": "Full-stack InvoiceForge freelance billing app",
+  "main": "server/server.js",
+  "type": "module",
+  "scripts": {
+    "install-client": "npm install --prefix client",
+    "install-server": "npm install --prefix server",
+    "build:client": "npm run build --prefix client",
+    "build": "npm run install-client && npm run install-server && npm run build:client",
+    "start": "cross-env NODE_ENV=production node server/server.js",
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "install:next-nest": "npm install --prefix client-next && npm install --prefix server-nest",
+    "server:nest": "npm run start:dev --prefix server-nest",
+    "client:next": "npm run dev --prefix client-next",
+    "dev:next-nest": "concurrently \"npm run server:nest\" \"npm run client:next\"",
+    "server:express": "npm run dev --prefix server",
+    "dev:next-express": "concurrently \"npm run server:express\" \"npm run client:next\""
+  },
+  "dependencies": {
+    "@prisma/client": "^6.4.1",
+    "concurrently": "^9.1.0",
+    "cross-env": "^7.0.3"
+  },
+  "devDependencies": {
+    "prisma": "^6.4.1"
+  }
+}
